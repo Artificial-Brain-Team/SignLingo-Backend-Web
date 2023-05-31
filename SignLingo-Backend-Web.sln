@@ -1,8 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignLingo.API", "SignLingo.API\SignLingo.API.csproj", "{0BD9996A-F05F-410B-9FAE-26D800097A92}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignLingo.Domain", "SignLingo.Domain\SignLingo.Domain.csproj", "{9204D6CF-CD54-4C35-99A7-02A243F2BABC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignLingo.Infrastructure", "SignLingo.Infrastructure\SignLingo.Infrastructure.csproj", "{02ECE3F0-075A-4939-AB4A-4972AEF73268}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0BD9996A-F05F-410B-9FAE-26D800097A92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BD9996A-F05F-410B-9FAE-26D800097A92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BD9996A-F05F-410B-9FAE-26D800097A92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BD9996A-F05F-410B-9FAE-26D800097A92}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9204D6CF-CD54-4C35-99A7-02A243F2BABC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9204D6CF-CD54-4C35-99A7-02A243F2BABC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9204D6CF-CD54-4C35-99A7-02A243F2BABC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9204D6CF-CD54-4C35-99A7-02A243F2BABC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02ECE3F0-075A-4939-AB4A-4972AEF73268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02ECE3F0-075A-4939-AB4A-4972AEF73268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02ECE3F0-075A-4939-AB4A-4972AEF73268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02ECE3F0-075A-4939-AB4A-4972AEF73268}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
