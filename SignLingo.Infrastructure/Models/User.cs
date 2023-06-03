@@ -13,6 +13,6 @@ public class User
     public int CityId { get; set; }
     
     [NotMapped]
-    public City? city { get; set; }
+    public City city { get; set; }
     public  bool IsActive { get; set; }
 }

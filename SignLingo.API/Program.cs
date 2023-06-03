@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using SignLingo.API.Mapper;
+using SignLingo.Infrastructure;
 using SignLingo.Infrastructure.Context;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -9,6 +11,13 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//Dependency Injection
+builder.Services.AddScoped<IUserInfrastructure, UserMySQLInfrastructure>();
+builder.Services.AddAutoMapper(
+    typeof(ModelToResponse),
+    typeof(RequestToModel)
+);
 
 //Connection to MySQL
 var connectionString = builder.Configuration.GetConnectionString("learningCenterConnection");
