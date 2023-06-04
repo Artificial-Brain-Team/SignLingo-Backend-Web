@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SignLingo.API.Mapper;
+using SignLingo.Domain;
 using SignLingo.Infrastructure;
 using SignLingo.Infrastructure.Context;
 
@@ -14,6 +15,7 @@ builder.Services.AddSwaggerGen();
 
 //Dependency Injection
 builder.Services.AddScoped<IUserInfrastructure, UserMySQLInfrastructure>();
+builder.Services.AddScoped<IUserDomain, UserDomain>();
 builder.Services.AddAutoMapper(
     typeof(ModelToResponse),
     typeof(RequestToModel)

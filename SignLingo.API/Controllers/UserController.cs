@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using SignLingo.API.Request;
 using SignLingo.API.Response;
+using SignLingo.Domain;
 using SignLingo.Infrastructure;
 using SignLingo.Infrastructure.Models;
 
@@ -17,11 +20,13 @@ namespace SignLingo.API.Controllers
     {
         private IUserInfrastructure _userInfrastructure;
         private IMapper _mapper;
+        private IUserDomain _userDomain;
 
-        public UserController(IUserInfrastructure userInfrastructure, IMapper mapper)
+        public UserController(IUserInfrastructure userInfrastructure, IMapper mapper, IUserDomain userDomain)
         {
             _userInfrastructure = userInfrastructure;
             _mapper = mapper;
+            _userDomain = userDomain;
         }
         
         // GET: api/User
@@ -48,20 +53,33 @@ namespace SignLingo.API.Controllers
 
         // POST: api/User
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task PostAsync([FromBody] UserRequest request)
         {
+            if (ModelState.IsValid)
+            {
+                var user = _mapper.Map<UserRequest, User>(request);
+
+                await _userDomain.SaveAsync(user);
+            }
+            else
+            {
+                StatusCode(400);
+            }
         }
 
         // PUT: api/User/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task Put(int id, [FromBody] UserRequest request)
         {
+            var user = _mapper.Map<UserRequest, User>(request);
+            await _userDomain.UpdateAsync(id, user);
         }
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
+            await _userDomain.DeleteAsync(id);
         }
     }
 }
