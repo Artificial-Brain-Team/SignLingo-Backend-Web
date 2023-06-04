@@ -15,5 +15,9 @@ public class RequestToModel : Profile
             .ForMember(user => user.BirthDate, opt => opt.MapFrom(userRequest => DateTime.Parse(userRequest.BirthDate)))
             .ForMember(user => user.CityId, opt => opt.MapFrom(userRequest => userRequest.City))
             .ForMember(user => user.city, opt => opt.Ignore());
+        CreateMap<CountryRequest, Country>()
+            .ForMember(country => country.Country_Name, opt => opt.MapFrom(countryRequest => countryRequest.Country_Name))
+            .ForMember(country => country.Id, opt=>opt.Ignore())
+            .ForMember(country => country.Cities, opt=>opt.Ignore());;
     }
 }

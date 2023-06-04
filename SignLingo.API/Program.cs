@@ -15,7 +15,9 @@ builder.Services.AddSwaggerGen();
 
 //Dependency Injection
 builder.Services.AddScoped<IUserInfrastructure, UserMySQLInfrastructure>();
+builder.Services.AddScoped<ICountryInfrastructure, CountryMySQLInfrastructure>();
 builder.Services.AddScoped<IUserDomain, UserDomain>();
+builder.Services.AddScoped<ICountryDomain, CountryDomain>();
 builder.Services.AddAutoMapper(
     typeof(ModelToResponse),
     typeof(RequestToModel)
