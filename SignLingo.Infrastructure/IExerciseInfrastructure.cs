@@ -4,5 +4,8 @@ namespace SignLingo.Infrastructure;
 
 public interface IExerciseInfrastructure
 {
-    List<Exercise> GetAll();
+    Task<List<Exercise>> GetAllAsync();
+    Task<List<Exercise>> GetByModuleIdAsync(int moduleId);
+    public Task<Exercise> GetByIdAsync(int exerciseId);
+
 }

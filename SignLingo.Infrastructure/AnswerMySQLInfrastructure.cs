@@ -1,4 +1,5 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using SignLingo.Infrastructure;
 using SignLingo.Infrastructure.Context;
 using SignLingo.Infrastructure.Models;
@@ -12,9 +13,19 @@ public class AnswerMySQLInfrastructure : IAnswerInfrastructure
         _signLingoDbContext = signLingoDbContext;
     }
 
-    public List<Answer> GetAll()
+    public async Task<List<Answer>> GetAllAsync()
     {
-        return _signLingoDbContext.Answers.ToList();
+        var answers = await _signLingoDbContext.Answers.ToListAsync();
+
+        return answers;    
     }
+
+    public async Task<List<Answer>> GetByExerciseIdAsync(int exerciseId)
+    {
+        var answers = await _signLingoDbContext.Answers.Where(answer => answer.ExerciseId == exerciseId).ToListAsync();
+        
+        return answers;
+    }
+    
 
 }

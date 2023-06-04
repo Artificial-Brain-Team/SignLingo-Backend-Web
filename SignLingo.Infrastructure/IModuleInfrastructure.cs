@@ -4,5 +4,6 @@ namespace SignLingo.Infrastructure;
 
 public interface IModuleInfrastructure
 {
-    List<Module> GetAll();
+    Task<List<Module>> GetAllAsync();
+    public Task<Module> GetByIdAsync(int moduleId);
 }

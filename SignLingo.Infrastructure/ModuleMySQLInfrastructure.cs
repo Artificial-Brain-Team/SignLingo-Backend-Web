@@ -1,4 +1,5 @@
-﻿using SignLingo.Infrastructure.Context;
+﻿using Microsoft.EntityFrameworkCore;
+using SignLingo.Infrastructure.Context;
 using SignLingo.Infrastructure.Models;
 
 namespace SignLingo.Infrastructure;
@@ -6,14 +7,22 @@ namespace SignLingo.Infrastructure;
 public class ModuleMySQLInfrastructure : IModuleInfrastructure
 {
     private SignLingoDbContext _signLingoDbContext;
+    private IModuleInfrastructure _moduleInfrastructureImplementation;
 
     public ModuleMySQLInfrastructure(SignLingoDbContext signLingoDbContext)
     {
         _signLingoDbContext = signLingoDbContext;
     }
 
-    public List<Module> GetAll()
+    public async Task<List<Module>> GetAllAsync()
     {
-        return _signLingoDbContext.Module.ToList();
+        var modules = await _signLingoDbContext.Module.ToListAsync();
+        return modules;
+    }
+
+    public async Task<Module> GetByIdAsync(int moduleId)
+    {
+        var module = await _signLingoDbContext.Module.FindAsync(moduleId);
+        return module;
     }
 }
