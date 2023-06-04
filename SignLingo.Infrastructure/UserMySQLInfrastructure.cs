@@ -43,11 +43,23 @@ public class UserMySQLInfrastructure : IUserInfrastructure
 
     public async Task<bool> UpdateAsync(int id, User user)
     {
-        throw new NotImplementedException();
+        var userFounded = await _signLingoDbContext.User.FindAsync(id);
+
+        userFounded.First_Name = user.First_Name;
+        userFounded.Last_Name = user.Last_Name;
+        userFounded.BirthDate = user.BirthDate;
+        userFounded.Email = user.Email;
+        userFounded.CityId = user.CityId;
+
+        await _signLingoDbContext.SaveChangesAsync();
+        return true;
     }
 
     public async Task<bool> DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var user = await _signLingoDbContext.User.FindAsync(id);
+        user.IsActive = false;
+        await _signLingoDbContext.SaveChangesAsync();
+        return true;
     }
 }

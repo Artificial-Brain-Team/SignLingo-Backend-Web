@@ -18,7 +18,10 @@ public class UserRequest
     [MaxLength(30)]
     [MinLength(2)]
     public string Email { get; set; }
-    
+
+    [Required]
+    public string BirthDate { get; set; }
+
     [Required]
     public int City { get; set; }
 }
