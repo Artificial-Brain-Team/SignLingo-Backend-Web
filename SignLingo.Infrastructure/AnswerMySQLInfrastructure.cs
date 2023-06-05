@@ -40,6 +40,7 @@ public class AnswerMySQLInfrastructure : IAnswerInfrastructure
 
         answerFounded.Answer_text = answer.Answer_text;
         answerFounded.IsCorrect = answer.IsCorrect;
+        answerFounded.ExerciseId = answer.ExerciseId;
 
         await _signLingoDbContext.SaveChangesAsync();
         return true;
@@ -47,7 +48,9 @@ public class AnswerMySQLInfrastructure : IAnswerInfrastructure
 
     public async Task<bool> DeleteAsync(int id)
     {
-        _signLingoDbContext.Answers.Remove(await _signLingoDbContext.Answers.FindAsync(id));
+        var answerFounded = await _signLingoDbContext.Answers.FindAsync(id);
+        _signLingoDbContext.Answers.Remove(answerFounded);
+        _signLingoDbContext.SaveChangesAsync();
         return true;  
     }
 

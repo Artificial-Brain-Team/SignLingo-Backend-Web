@@ -45,6 +45,7 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<Exercise>().HasKey(exercise => exercise.Id);
         modelBuilder.Entity<Exercise>().Property(exercise => exercise.Id).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<Exercise>().Property(exercise => exercise.Question).IsRequired().HasMaxLength(30);
+        modelBuilder.Entity<Exercise>().Property(exercise => exercise.Image);
         modelBuilder.Entity<Exercise>().HasMany(exercise => exercise.Answers)
             .WithOne().HasForeignKey(answer => answer.Id).IsRequired();
 

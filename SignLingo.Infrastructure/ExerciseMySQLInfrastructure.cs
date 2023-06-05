@@ -31,4 +31,25 @@ public class ExerciseMySQLInfrastructure : IExerciseInfrastructure
         var exercise = await _signLingoDbContext.Exercise.FindAsync(exerciseId);
         return exercise;
     }
+    public async Task<bool> SaveAsync(Exercise exercise){
+            await _signLingoDbContext.Exercise.AddAsync(exercise);
+            await _signLingoDbContext.SaveChangesAsync();
+            return true;
+    }
+    public async Task<bool> UpdateAsync(int id, Exercise exercise){
+        var exerciseFounded = await _signLingoDbContext.Exercise.FindAsync(id);
+
+        exerciseFounded.Question = exercise.Question;
+        exerciseFounded.Image = exercise.Image;
+        exerciseFounded.ModuleId = exercise.ModuleId;
+
+        await _signLingoDbContext.SaveChangesAsync();
+        return true;
+    }
+    public async Task<bool> DeleteAsync(int id){
+        var exerciseFounded = await _signLingoDbContext.Exercise.FindAsync(id);
+        _signLingoDbContext.Exercise.Remove(exerciseFounded);
+        _signLingoDbContext.SaveChangesAsync();
+        return true;  
+    }
 }

@@ -25,4 +25,29 @@ public class ModuleMySQLInfrastructure : IModuleInfrastructure
         var module = await _signLingoDbContext.Module.FindAsync(moduleId);
         return module;
     }
+
+    public async Task<bool> SaveAsync(Module module)
+    {
+        await _signLingoDbContext.Module.AddAsync(module);
+        await _signLingoDbContext.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> UpdateAsync(int id, Module module)
+    {
+        var moduleFounded = await _signLingoDbContext.Module.FindAsync(id);
+
+        moduleFounded.Module_Name = module.Module_Name;
+
+        await _signLingoDbContext.SaveChangesAsync();
+        return true;
+    }
+
+    public async Task<bool> DeleteAsync(int id)
+    {
+        var moduleFounded = await _signLingoDbContext.Module.FindAsync(id);
+        _signLingoDbContext.Module.Remove(moduleFounded);
+        _signLingoDbContext.SaveChangesAsync();
+        return true;  
+    }
 }
