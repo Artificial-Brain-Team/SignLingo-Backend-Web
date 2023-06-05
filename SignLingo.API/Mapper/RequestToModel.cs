@@ -18,6 +18,11 @@ public class RequestToModel : Profile
         CreateMap<CountryRequest, Country>()
             .ForMember(country => country.Country_Name, opt => opt.MapFrom(countryRequest => countryRequest.Country_Name))
             .ForMember(country => country.Id, opt=>opt.Ignore())
-            .ForMember(country => country.Cities, opt=>opt.Ignore());;
+            .ForMember(country => country.Cities, opt=>opt.Ignore());
+        CreateMap<CityRequest, City>()
+            .ForMember(city => city.City_Name, opt => opt.MapFrom(cityRequest => cityRequest.City_Name))
+            .ForMember(city => city.CountryId, opt => opt.MapFrom(cityRequest => cityRequest.Country))
+            .ForMember(city => city.country, opt => opt.Ignore())
+            .ForMember(city => city.Users, opt => opt.Ignore());
     }
 }

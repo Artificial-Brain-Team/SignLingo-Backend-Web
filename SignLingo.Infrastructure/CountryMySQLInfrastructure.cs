@@ -33,8 +33,8 @@ public class CountryMySQLInfrastructure : ICountryInfrastructure
 
     public async Task<bool> UpdateAsync(int id, Country country)
     {
-        var countryFounded = await _signLingoDbContext.Country.FindAsync(id);
-        countryFounded.Country_Name = country.Country_Name;
+        var countryFound = await _signLingoDbContext.Country.FindAsync(id);
+        countryFound.Country_Name = country.Country_Name;
         await _signLingoDbContext.SaveChangesAsync();
         return true;
     }
