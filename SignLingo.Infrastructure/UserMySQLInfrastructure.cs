@@ -43,13 +43,13 @@ public class UserMySQLInfrastructure : IUserInfrastructure
 
     public async Task<bool> UpdateAsync(int id, User user)
     {
-        var userFounded = await _signLingoDbContext.User.FindAsync(id);
+        var userFound = await _signLingoDbContext.User.FindAsync(id);
 
-        userFounded.First_Name = user.First_Name;
-        userFounded.Last_Name = user.Last_Name;
-        userFounded.BirthDate = user.BirthDate;
-        userFounded.Email = user.Email;
-        userFounded.CityId = user.CityId;
+        userFound.First_Name = user.First_Name;
+        userFound.Last_Name = user.Last_Name;
+        userFound.BirthDate = user.BirthDate;
+        userFound.Email = user.Email;
+        userFound.CityId = user.CityId;
 
         await _signLingoDbContext.SaveChangesAsync();
         return true;

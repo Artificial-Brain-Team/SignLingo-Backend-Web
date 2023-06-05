@@ -13,5 +13,8 @@ public class ModelToResponse : Profile
         CreateMap<Country, CountryResponse>()
             .ForMember(userResponse => userResponse.id, opt => opt.MapFrom(country => country.Id))
             .ForMember(userResponse => userResponse.Country_name, opt => opt.MapFrom(country => country.Country_Name));
+        CreateMap<City, CityResponse>()
+            .ForMember(cityResponse => cityResponse.City_Name, opt => opt.MapFrom(city => city.City_Name))
+            .ForMember(cityResponse => cityResponse.Country_name, opt => opt.MapFrom(city => city.country.Country_Name));
     }
 }
