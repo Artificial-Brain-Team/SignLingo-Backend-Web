@@ -18,9 +18,9 @@ namespace SignLingo.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private IUserInfrastructure _userInfrastructure;
-        private IMapper _mapper;
-        private IUserDomain _userDomain;
+        private readonly IUserInfrastructure _userInfrastructure;
+        private readonly IMapper _mapper;
+        private readonly IUserDomain _userDomain;
 
         public UserController(IUserInfrastructure userInfrastructure, IMapper mapper, IUserDomain userDomain)
         {

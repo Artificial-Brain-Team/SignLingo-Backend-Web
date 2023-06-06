@@ -16,10 +16,12 @@ public class UserRequest
     
     [Required]
     [MaxLength(30)]
-    [MinLength(2)]
+    [EmailAddress]
+    [MinLength(4)]
     public string Email { get; set; }
 
     [Required]
+    [DataType(DataType.Date)]
     public string BirthDate { get; set; }
 
     [Required]
