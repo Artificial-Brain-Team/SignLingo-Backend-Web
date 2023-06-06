@@ -16,6 +16,13 @@ builder.Services.AddSwaggerGen();
 //Dependency Injection
 builder.Services.AddScoped<IUserInfrastructure, UserMySQLInfrastructure>();
 builder.Services.AddScoped<IUserDomain, UserDomain>();
+builder.Services.AddScoped<IModuleInfrastructure, ModuleMySQLInfrastructure>();
+builder.Services.AddScoped<IModuleDomain, ModuleDomain>();
+builder.Services.AddScoped<IExerciseInfrastructure, ExerciseMySQLInfrastructure>();
+builder.Services.AddScoped<IExerciseDomain, ExerciseDomain>();
+builder.Services.AddScoped<IAnswerInfrastructure, AnswerMySQLInfrastructure>();
+builder.Services.AddScoped<IAnswerDomain, AnswerDomain>();
+
 builder.Services.AddAutoMapper(
     typeof(ModelToResponse),
     typeof(RequestToModel)
