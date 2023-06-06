@@ -17,19 +17,45 @@ public class SignLingoDbContext : DbContext
     public DbSet<Country> Country { get; set; }
     public DbSet<City> City { get; set; }
     public DbSet<User> User { get; set; }
+    public DbSet<Module> Module { get; set; }
+    public DbSet<Exercise> Exercise { get; set; }
+    public DbSet<Answer> Answers { get; set; }
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         if (!optionsBuilder.IsConfigured)
         {
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("Server=localhost,3306;Uid=root;Pwd=root;Database=signlingo-db", serverVersion);
+            optionsBuilder.UseMySql("Server=localhost,3306;Uid=root;Pwd=password;Database=signlingo-db", serverVersion);
         }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Module>().ToTable("module");
+        modelBuilder.Entity<Module>().HasKey(module => module.Id);
+        modelBuilder.Entity<Module>().Property(module => module.Id).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<Module>().Property(module => module.Module_Name).IsRequired().HasMaxLength(100);
+        modelBuilder.Entity<Module>().HasMany(module => module.Exercises)
+            .WithOne()
+            .HasForeignKey(exercise => exercise.ModuleId)
+            .IsRequired();
+
+        modelBuilder.Entity<Exercise>().ToTable("exercise");
+        modelBuilder.Entity<Exercise>().HasKey(exercise => exercise.Id);
+        modelBuilder.Entity<Exercise>().Property(exercise => exercise.Id).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<Exercise>().Property(exercise => exercise.Question).IsRequired().HasMaxLength(100);
+        modelBuilder.Entity<Exercise>().Property(exercise => exercise.Image);
+        modelBuilder.Entity<Exercise>().HasMany(exercise => exercise.Answers)
+            .WithOne().HasForeignKey(answer => answer.ExerciseId).IsRequired();
+
+        modelBuilder.Entity<Answer>().ToTable("answer");
+        modelBuilder.Entity<Answer>().HasKey(answer => answer.Id);
+        modelBuilder.Entity<Answer>().Property(answer => answer.Id).IsRequired().ValueGeneratedOnAdd();
+        modelBuilder.Entity<Answer>().Property(answer => answer.Answer_text).IsRequired().HasMaxLength(30);
+        modelBuilder.Entity<Answer>().Property(answer => answer.IsCorrect).IsRequired();
 
         modelBuilder.Entity<Country>().ToTable("country");
         modelBuilder.Entity<Country>().HasKey(country => country.Id);
