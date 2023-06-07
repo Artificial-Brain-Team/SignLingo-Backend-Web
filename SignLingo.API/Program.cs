@@ -29,6 +29,12 @@ builder.Services.AddScoped<IExerciseDomain, ExerciseDomain>();
 builder.Services.AddScoped<IAnswerDomain, AnswerDomain>();
 builder.Services.AddScoped<IUserModuleDomain, UserModuleDomain>();
 
+//cors
+builder.Services.AddCors(p => p.AddPolicy("corsapp", corsPolicyBuilder =>
+{
+    corsPolicyBuilder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+}));
+
 builder.Services.AddAutoMapper(
     typeof(ModelToResponse),
     typeof(RequestToModel)
