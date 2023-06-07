@@ -20,12 +20,14 @@ builder.Services.AddScoped<ICityInfrastructure, CityMySQLInfrastructure>();
 builder.Services.AddScoped<IModuleInfrastructure, ModuleMySQLInfrastructure>();
 builder.Services.AddScoped<IExerciseInfrastructure, ExerciseMySQLInfrastructure>();
 builder.Services.AddScoped<IAnswerInfrastructure, AnswerMySQLInfrastructure>();
+builder.Services.AddScoped<IUserModuleInfrastructure, UserModuleMySQLInfrastructure>();
 builder.Services.AddScoped<IUserDomain, UserDomain>();
 builder.Services.AddScoped<ICountryDomain, CountryDomain>();
 builder.Services.AddScoped<ICityDomain, CityDomain>();
 builder.Services.AddScoped<IModuleDomain, ModuleDomain>();
 builder.Services.AddScoped<IExerciseDomain, ExerciseDomain>();
 builder.Services.AddScoped<IAnswerDomain, AnswerDomain>();
+builder.Services.AddScoped<IUserModuleDomain, UserModuleDomain>();
 
 builder.Services.AddAutoMapper(
     typeof(ModelToResponse),
