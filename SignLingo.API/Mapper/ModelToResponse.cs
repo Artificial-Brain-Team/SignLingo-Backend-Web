@@ -25,5 +25,9 @@ public class ModelToResponse : Profile
             .ForMember(answerResponse => answerResponse.Answer_Text, opt => opt.MapFrom(answer => answer.Answer_text))
             .ForMember(answerResponse => answerResponse.ExerciseId, opt => opt.MapFrom(answer => answer.ExerciseId))
             .ForMember(answerResponse => answerResponse.IsCorrect, opt => opt.MapFrom(answer => answer.IsCorrect));
+        CreateMap<UserModule, UserModuleResponse>()
+            .ForMember(userModuleResponse => userModuleResponse.User, opt => opt.MapFrom(userModule => $"{userModule.User.First_Name} {userModule.User.Last_Name}"))
+            .ForMember(userModuleResponse => userModuleResponse.Module, opt => opt.MapFrom(userModule => userModule.Module.Module_Name))
+            .ForMember(userModuleResponse => userModuleResponse.Grade, opt => opt.MapFrom(userModule => userModule.Grade));
     }
 }

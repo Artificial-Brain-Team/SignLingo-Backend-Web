@@ -11,6 +11,7 @@ public class ExerciseRequest
     
     [Required]
     [MinLength(2)]
+    [DataType(DataType.Url)]
     public string Image { get; set; }
     
     [Required]

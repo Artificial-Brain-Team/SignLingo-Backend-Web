@@ -69,7 +69,7 @@ namespace SignLingo.API.Controllers
 
         // PUT: api/User/5
         [HttpPut("{id}")]
-        public async Task Put(int id, [FromBody] UserRequest request)
+        public async Task PutAsync(int id, [FromBody] UserRequest request)
         {
             var user = _mapper.Map<UserRequest, User>(request);
             await _userDomain.UpdateAsync(id, user);
@@ -77,7 +77,7 @@ namespace SignLingo.API.Controllers
 
         // DELETE: api/User/5
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             await _userDomain.DeleteAsync(id);
         }

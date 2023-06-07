@@ -17,6 +17,7 @@ public class SignLingoDbContext : DbContext
     public DbSet<Country> Country { get; set; }
     public DbSet<City> City { get; set; }
     public DbSet<User> User { get; set; }
+    public DbSet<UserModule> UserModule { get; set; }
     public DbSet<Module> Module { get; set; }
     public DbSet<Exercise> Exercise { get; set; }
     public DbSet<Answer> Answers { get; set; }
@@ -26,7 +27,7 @@ public class SignLingoDbContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("Server=localhost,3306;Uid=root;Pwd=password;Database=signlingo-db", serverVersion);
+            optionsBuilder.UseMySql("Server=sql10.freemysqlhosting.net,3306;Uid=sql10624177;Pwd=nxU1nyHWM1;Database=sql10624177", serverVersion);
         }
     }
 
@@ -83,5 +84,9 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<User>().Property(user => user.Email).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.BirthDate).HasColumnType("date");
         modelBuilder.Entity<User>().Property(user => user.IsActive).HasDefaultValue(true);
+
+        modelBuilder.Entity<UserModule>().ToTable("user_module");
+        modelBuilder.Entity<UserModule>().HasKey(userModule => new { userModule.UserId, userModule.ModuleId });
+        modelBuilder.Entity<UserModule>().Property(userModule => userModule.Grade).HasDefaultValue(0);
     }
 }

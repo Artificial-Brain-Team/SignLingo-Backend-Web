@@ -7,7 +7,6 @@ namespace SignLingo.Infrastructure;
 public class ModuleMySQLInfrastructure : IModuleInfrastructure
 {
     private SignLingoDbContext _signLingoDbContext;
-    private IModuleInfrastructure _moduleInfrastructureImplementation;
 
     public ModuleMySQLInfrastructure(SignLingoDbContext signLingoDbContext)
     {

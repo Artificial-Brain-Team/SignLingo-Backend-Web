@@ -4,7 +4,7 @@ namespace SignLingo.API.Request;
 
 public class ModuleRequest
 {
-    [Microsoft.Build.Framework.Required]
+    [Required]
     [MaxLength(100)]
     [MinLength(2)]
     public string Module_Name { get; set; }
