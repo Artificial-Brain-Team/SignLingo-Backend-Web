@@ -30,9 +30,9 @@ builder.Services.AddScoped<IAnswerDomain, AnswerDomain>();
 builder.Services.AddScoped<IUserModuleDomain, UserModuleDomain>();
 
 //cors
-builder.Services.AddCors(p => p.AddPolicy("corsapp", corsPolicyBuilder =>
+builder.Services.AddCors(p => p.AddPolicy("AllowOrigin", corsPolicyBuilder =>
 {
-    corsPolicyBuilder.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader();
+    corsPolicyBuilder.WithOrigins().AllowAnyMethod().AllowAnyHeader();
 }));
 
 builder.Services.AddAutoMapper(
