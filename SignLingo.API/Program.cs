@@ -30,9 +30,11 @@ builder.Services.AddScoped<IAnswerDomain, AnswerDomain>();
 builder.Services.AddScoped<IUserModuleDomain, UserModuleDomain>();
 
 //cors
-builder.Services.AddCors(p => p.AddPolicy("AllowOrigin", corsPolicyBuilder =>
-{
-    corsPolicyBuilder.WithOrigins().AllowAnyMethod().AllowAnyHeader();
+builder.Services.AddCors(p => 
+    p.AddPolicy("AllowOrigin", corsPolicyBuilder => {
+    corsPolicyBuilder.WithOrigins()
+        .AllowAnyMethod().
+        AllowAnyHeader();
 }));
 
 builder.Services.AddAutoMapper(
@@ -57,6 +59,8 @@ builder.Services.AddDbContext<SignLingoDbContext>(
     });
 
 var app = builder.Build();
+
+app.UseCors("AllowOrigin");
 
 using (var scope = app.Services.CreateScope())
 using (var context = scope.ServiceProvider.GetService<SignLingoDbContext>())
