@@ -32,7 +32,7 @@ builder.Services.AddScoped<IUserModuleDomain, UserModuleDomain>();
 //cors
 builder.Services.AddCors(p => p.AddPolicy("corsapp", corsPolicyBuilder =>
 {
-    corsPolicyBuilder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
+    corsPolicyBuilder.WithOrigins("http://localhost:5173").AllowAnyMethod().AllowAnyHeader();
 }));
 
 builder.Services.AddAutoMapper(
