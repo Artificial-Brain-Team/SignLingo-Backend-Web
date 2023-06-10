@@ -30,12 +30,15 @@ builder.Services.AddScoped<IAnswerDomain, AnswerDomain>();
 builder.Services.AddScoped<IUserModuleDomain, UserModuleDomain>();
 
 //cors
-builder.Services.AddCors(p => 
-    p.AddPolicy("AllowOrigin", corsPolicyBuilder => {
-    corsPolicyBuilder.WithOrigins()
-        .AllowAnyMethod().
-        AllowAnyHeader();
-}));
+builder.Services.AddCors(p =>
+{
+    p.AddPolicy("AllowOrigin",
+        corsPolicyBuilder =>
+        {
+            corsPolicyBuilder.AllowAnyOrigin()
+                .AllowAnyMethod().AllowAnyHeader();
+        });
+});
 
 builder.Services.AddAutoMapper(
     typeof(ModelToResponse),
