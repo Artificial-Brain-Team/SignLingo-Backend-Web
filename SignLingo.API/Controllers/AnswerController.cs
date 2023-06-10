@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SignLingo.API.Request;
 using SignLingo.API.Response;
@@ -8,7 +9,7 @@ using SignLingo.Infrastructure.Models;
 
 namespace SignLingo.API.Controllers
 {
-
+    [EnableCors("AllowOrigin")]
     [Route("api/[controller]")]
     [ApiController]
     public class AnswerController : ControllerBase
