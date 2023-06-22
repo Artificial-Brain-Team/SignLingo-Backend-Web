@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using SignLingo.API.Mapper;
 using SignLingo.Domain;
+using SignLingo.Domain.Interfaces;
 using SignLingo.Infrastructure;
 using SignLingo.Infrastructure.Context;
+using SignLingo.Infrastructure.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 

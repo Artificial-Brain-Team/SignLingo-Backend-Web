@@ -27,7 +27,7 @@ public class SignLingoDbContext : DbContext
         if (!optionsBuilder.IsConfigured)
         {
             var serverVersion = new MySqlServerVersion(new Version(8, 0, 29));
-            optionsBuilder.UseMySql("Server=sql10.freemysqlhosting.net,3306;Uid=sql10624177;Pwd=nxU1nyHWM1;Database=sql10624177", serverVersion);
+            optionsBuilder.UseMySql("Server=sql10.freemysqlhosting.net,3306;Uid=sql10628037;Pwd=uBzjKgcgnP;Database=sql10628037", serverVersion);
         }
     }
 
@@ -81,6 +81,7 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<User>().Property(user => user.Id).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<User>().Property(user => user.First_Name).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.Last_Name).IsRequired().HasMaxLength(30);
+        modelBuilder.Entity<User>().Property(user => user.Password).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.Email).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.BirthDate).HasColumnType("date");
         modelBuilder.Entity<User>().Property(user => user.IsActive).HasDefaultValue(true);

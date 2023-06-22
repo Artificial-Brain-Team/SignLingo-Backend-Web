@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SignLingo.API.Request;
 using SignLingo.API.Response;
-using SignLingo.Domain;
-using SignLingo.Infrastructure;
+using SignLingo.Domain.Interfaces;
+using SignLingo.Infrastructure.Interfaces;
 using SignLingo.Infrastructure.Models;
 
 namespace SignLingo.API.Controllers
@@ -14,9 +14,9 @@ namespace SignLingo.API.Controllers
     [ApiController]
     public class AnswerController : ControllerBase
     {
-        private IAnswerInfrastructure _answerInfrastructure;
-        private IMapper _mapper;
-        private IAnswerDomain _answerDomain;
+        private readonly IAnswerInfrastructure _answerInfrastructure;
+        private readonly IMapper _mapper;
+        private readonly IAnswerDomain _answerDomain;
 
         public AnswerController(IAnswerInfrastructure answerInfrastructure, IMapper mapper, IAnswerDomain answerDomain)
         {

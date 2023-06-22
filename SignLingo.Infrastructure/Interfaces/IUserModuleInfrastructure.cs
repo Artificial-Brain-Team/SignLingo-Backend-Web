@@ -1,6 +1,6 @@
 ﻿using SignLingo.Infrastructure.Models;
 
-namespace SignLingo.Infrastructure;
+namespace SignLingo.Infrastructure.Interfaces;
 
 public interface IUserModuleInfrastructure
 {

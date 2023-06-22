@@ -1,7 +1,6 @@
 ﻿using SignLingo.Infrastructure.Models;
 
-namespace SignLingo.Domain;
-
+namespace SignLingo.Domain.Interfaces;
 public interface ICountryDomain
 {
     public Task<bool> SaveAsync(Country country);
