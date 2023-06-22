@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Cors;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SignLingo.API.Request;
 using SignLingo.API.Response;
-using SignLingo.Domain;
-using SignLingo.Infrastructure;
+using SignLingo.Domain.Interfaces;
+using SignLingo.Infrastructure.Interfaces;
 using SignLingo.Infrastructure.Models;
 
 namespace SignLingo.API.Controllers

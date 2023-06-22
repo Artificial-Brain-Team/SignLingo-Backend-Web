@@ -16,6 +16,11 @@ public class UserRequest
     
     [Required]
     [MaxLength(30)]
+    [MinLength(8)]
+    public string Password { get; set; }
+
+    [Required]
+    [MaxLength(30)]
     [EmailAddress]
     [MinLength(4)]
     public string Email { get; set; }

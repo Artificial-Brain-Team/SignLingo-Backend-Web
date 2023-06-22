@@ -1,7 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
-using SignLingo.Infrastructure;
 using SignLingo.Infrastructure.Context;
+using SignLingo.Infrastructure.Interfaces;
 using SignLingo.Infrastructure.Models;
 
 public class AnswerMySQLInfrastructure : IAnswerInfrastructure
