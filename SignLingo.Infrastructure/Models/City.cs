@@ -2,9 +2,8 @@
 
 namespace SignLingo.Infrastructure.Models;
 
-public class City
+public class City : BaseModel
 {
-    public int Id { get; set; }
     public string City_Name { get; set; }
     [NotMapped]
     public Country country;
