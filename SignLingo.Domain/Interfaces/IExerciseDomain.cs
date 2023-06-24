@@ -1,7 +1,6 @@
 ﻿using SignLingo.Infrastructure.Models;
 
-namespace SignLingo.Domain;
-
+namespace SignLingo.Domain.Interfaces;
 public interface IExerciseDomain
 {
     public Task<bool> SaveAsync(Exercise exercise);

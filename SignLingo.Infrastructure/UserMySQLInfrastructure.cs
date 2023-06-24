@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SignLingo.Infrastructure.Context;
+using SignLingo.Infrastructure.Interfaces;
 using SignLingo.Infrastructure.Models;
 
 namespace SignLingo.Infrastructure;
@@ -24,6 +25,19 @@ public class UserMySQLInfrastructure : IUserInfrastructure
         }
 
         return users;
+    }
+
+    public async Task<User> SignUp(User user)
+    {
+        await _signLingoDbContext.User.AddAsync(user);
+        user.city = await _signLingoDbContext.City.FindAsync(user.CityId);
+        await _signLingoDbContext.SaveChangesAsync();
+        return user;
+    }
+
+    public async Task<User> GetByUserEmailAsync(string email)
+    {
+        return await _signLingoDbContext.User.SingleAsync(user => user.Email == email);
     }
 
     public async Task<User> GetByIdAsync(int id)

@@ -1,7 +1,6 @@
 ﻿using SignLingo.Infrastructure.Models;
 
-namespace SignLingo.Domain;
-
+namespace SignLingo.Domain.Interfaces;
 public interface IUserModuleDomain
 {
     public Task<bool> SaveAsync(UserModule user);

@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignLingo.Domain", "SignLin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignLingo.Infrastructure", "SignLingo.Infrastructure\SignLingo.Infrastructure.csproj", "{02ECE3F0-075A-4939-AB4A-4972AEF73268}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignLingo.Shared", "SignLingo.Shared\SignLingo.Shared.csproj", "{CE051897-BCBD-425D-88AD-76F209D6647D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{02ECE3F0-075A-4939-AB4A-4972AEF73268}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{02ECE3F0-075A-4939-AB4A-4972AEF73268}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{02ECE3F0-075A-4939-AB4A-4972AEF73268}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE051897-BCBD-425D-88AD-76F209D6647D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE051897-BCBD-425D-88AD-76F209D6647D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE051897-BCBD-425D-88AD-76F209D6647D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE051897-BCBD-425D-88AD-76F209D6647D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

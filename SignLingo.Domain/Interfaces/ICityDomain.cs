@@ -1,7 +1,6 @@
 ﻿using SignLingo.Infrastructure.Models;
 
-namespace SignLingo.Domain;
-
+namespace SignLingo.Domain.Interfaces;
 public interface ICityDomain
 {
     public Task<bool> SaveAsync(City city);

@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using SignLingo.API.Request;
-using SignLingo.API.Response;
 using SignLingo.Infrastructure.Models;
 
 namespace SignLingo.API.Mapper;
@@ -12,9 +11,11 @@ public class RequestToModel : Profile
         CreateMap<UserRequest, User>()
             .ForMember(user => user.First_Name, opt => opt.MapFrom(userRequest => userRequest.First_Name))
             .ForMember(user => user.Last_Name, opt => opt.MapFrom(userRequest => userRequest.Last_Name))
+            .ForMember(user => user.Password, opt => opt.MapFrom(userRequest => userRequest.Password))
             .ForMember(user => user.Email, opt => opt.MapFrom(userRequest => userRequest.Email))
             .ForMember(user => user.BirthDate, opt => opt.MapFrom(userRequest => DateTime.Parse(userRequest.BirthDate)))
             .ForMember(user => user.CityId, opt => opt.MapFrom(userRequest => userRequest.City))
+            .ForMember(user => user.Roles, opt => opt.MapFrom(userRequest => userRequest.Roles))
             .ForMember(user => user.city, opt => opt.Ignore());
         CreateMap<CountryRequest, Country>()
             .ForMember(country => country.Country_Name, opt => opt.MapFrom(countryRequest => countryRequest.Country_Name))
@@ -41,5 +42,8 @@ public class RequestToModel : Profile
             .ForMember(userModule => userModule.Grade, opt => opt.MapFrom(userModuleRequest => userModuleRequest.Grade))
             .ForMember(userModule => userModule.User, opt => opt.Ignore())
             .ForMember(userModule => userModule.Module, opt => opt.Ignore());
+        CreateMap<UserInputLogin, User>()
+            .ForMember(user => user.Email, opt => opt.MapFrom(userInputLogin => userInputLogin.Email))
+            .ForMember(user => user.Password, opt => opt.MapFrom(userInputLogin => userInputLogin.Password));
     }
 }

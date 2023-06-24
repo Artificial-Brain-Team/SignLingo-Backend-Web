@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SignLingo.Infrastructure.Context;
+using SignLingo.Infrastructure.Interfaces;
 using SignLingo.Infrastructure.Models;
 
 namespace SignLingo.Infrastructure;

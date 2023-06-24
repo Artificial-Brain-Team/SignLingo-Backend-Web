@@ -1,4 +1,6 @@
-﻿using SignLingo.Infrastructure;
+﻿using SignLingo.Domain.Interfaces;
+using SignLingo.Infrastructure;
+using SignLingo.Infrastructure.Interfaces;
 using SignLingo.Infrastructure.Models;
 
 namespace SignLingo.Domain;

@@ -1,8 +1,12 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using SignLingo.API.Mapper;
+using SignLingo.API.Middleware;
 using SignLingo.Domain;
+using SignLingo.Domain.Interfaces;
 using SignLingo.Infrastructure;
 using SignLingo.Infrastructure.Context;
+using SignLingo.Infrastructure.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -28,6 +32,8 @@ builder.Services.AddScoped<IModuleDomain, ModuleDomain>();
 builder.Services.AddScoped<IExerciseDomain, ExerciseDomain>();
 builder.Services.AddScoped<IAnswerDomain, AnswerDomain>();
 builder.Services.AddScoped<IUserModuleDomain, UserModuleDomain>();
+builder.Services.AddScoped<IEncryptDomain, EncryptDomain>();
+builder.Services.AddScoped<ITokenDomain, TokenDomain>();
 
 //cors
 builder.Services.AddCors(p =>
@@ -61,6 +67,14 @@ builder.Services.AddDbContext<SignLingoDbContext>(
         );
     });
 
+//jwt
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+});
+
 var app = builder.Build();
 
 app.UseCors("AllowOrigin");
@@ -70,6 +84,8 @@ using (var context = scope.ServiceProvider.GetService<SignLingoDbContext>())
 {
     context.Database.EnsureCreated();
 }
+
+app.UseMiddleware<JwtMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
