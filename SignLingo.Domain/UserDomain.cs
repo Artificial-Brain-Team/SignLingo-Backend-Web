@@ -7,13 +7,40 @@ namespace SignLingo.Domain;
 
 public class UserDomain : IUserDomain
 {
-    private IUserInfrastructure _userInfrastructure;
+    private readonly IUserInfrastructure _userInfrastructure;
+    private readonly IEncryptDomain _encryptDomain;
+    private readonly ITokenDomain _tokenDomain;
 
-    public UserDomain(IUserInfrastructure userInfrastructure)
+    public UserDomain(IUserInfrastructure userInfrastructure, IEncryptDomain encryptDomain, ITokenDomain tokenDomain)
     {
         _userInfrastructure = userInfrastructure;
+        _encryptDomain = encryptDomain;
+        _tokenDomain = tokenDomain;
     }
-    
+
+    public async Task<string> Login(User user)
+    {
+        var userFound = await _userInfrastructure.GetByUserEmailAsync(user.Email);
+        
+        if (_encryptDomain.Encrypt(user.Password) == userFound.Password)
+        {
+            return _tokenDomain.GenerateJwt(user.Email);
+        }
+        
+        throw new ArgumentException("Invalid email or password");
+    }
+
+    public async Task<User> SignUp(User user)
+    {
+        user.Password = _encryptDomain.Encrypt(user.Password);
+        return await _userInfrastructure.SignUp(user);
+    }
+
+    public async Task<User> GetByUserEmailAsync(string email)
+    {
+        return await _userInfrastructure.GetByUserEmailAsync(email);
+    }
+
     public async Task<bool> SaveAsync(User user)
     {
         if (!IsValidData(user)) throw new Exception("must follow the user format");

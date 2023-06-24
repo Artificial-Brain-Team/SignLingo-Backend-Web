@@ -43,6 +43,9 @@ public class SignLingoDbContext : DbContext
             .WithOne()
             .HasForeignKey(exercise => exercise.ModuleId)
             .IsRequired();
+        modelBuilder.Entity<Module>().Property(module => module.DateCreated);
+        modelBuilder.Entity<Module>().Property(module => module.DateUpdated);
+        modelBuilder.Entity<Module>().Property(module => module.IsActive).HasDefaultValue(true);
 
         modelBuilder.Entity<Exercise>().ToTable("exercise");
         modelBuilder.Entity<Exercise>().HasKey(exercise => exercise.Id);
@@ -51,12 +54,18 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<Exercise>().Property(exercise => exercise.Image);
         modelBuilder.Entity<Exercise>().HasMany(exercise => exercise.Answers)
             .WithOne().HasForeignKey(answer => answer.ExerciseId).IsRequired();
+        modelBuilder.Entity<Exercise>().Property(exercise => exercise.DateCreated);
+        modelBuilder.Entity<Exercise>().Property(exercise => exercise.DateUpdated);
+        modelBuilder.Entity<Exercise>().Property(exercise => exercise.IsActive).HasDefaultValue(true);
 
         modelBuilder.Entity<Answer>().ToTable("answer");
         modelBuilder.Entity<Answer>().HasKey(answer => answer.Id);
         modelBuilder.Entity<Answer>().Property(answer => answer.Id).IsRequired().ValueGeneratedOnAdd();
         modelBuilder.Entity<Answer>().Property(answer => answer.Answer_text).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<Answer>().Property(answer => answer.IsCorrect).IsRequired();
+        modelBuilder.Entity<Answer>().Property(answer => answer.DateCreated);
+        modelBuilder.Entity<Answer>().Property(answer => answer.DateUpdated);
+        modelBuilder.Entity<Answer>().Property(answer => answer.IsActive).HasDefaultValue(true);
 
         modelBuilder.Entity<Country>().ToTable("country");
         modelBuilder.Entity<Country>().HasKey(country => country.Id);
@@ -66,6 +75,9 @@ public class SignLingoDbContext : DbContext
             .WithOne()
             .HasForeignKey(city => city.CountryId )
             .IsRequired();
+        modelBuilder.Entity<Country>().Property(country => country.DateCreated);
+        modelBuilder.Entity<Country>().Property(country => country.DateUpdated);
+        modelBuilder.Entity<Country>().Property(country => country.IsActive).HasDefaultValue(true);
         
         modelBuilder.Entity<City>().ToTable("city");
         modelBuilder.Entity<City>().HasKey(city => city.Id);
@@ -75,6 +87,9 @@ public class SignLingoDbContext : DbContext
             .WithOne()
             .HasForeignKey(user => user.CityId )
             .IsRequired();
+        modelBuilder.Entity<City>().Property(city => city.DateCreated);
+        modelBuilder.Entity<City>().Property(city => city.DateUpdated);
+        modelBuilder.Entity<City>().Property(city => city.IsActive).HasDefaultValue(true);
         
         modelBuilder.Entity<User>().ToTable("user");
         modelBuilder.Entity<User>().HasKey(user => user.Id);
@@ -84,6 +99,8 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<User>().Property(user => user.Password).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.Email).IsRequired().HasMaxLength(30);
         modelBuilder.Entity<User>().Property(user => user.BirthDate).HasColumnType("date");
+        modelBuilder.Entity<User>().Property(user => user.DateCreated);
+        modelBuilder.Entity<User>().Property(user => user.DateUpdated);
         modelBuilder.Entity<User>().Property(user => user.IsActive).HasDefaultValue(true);
 
         modelBuilder.Entity<UserModule>().ToTable("user_module");

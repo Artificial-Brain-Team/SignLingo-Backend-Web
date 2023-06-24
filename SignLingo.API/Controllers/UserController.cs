@@ -1,4 +1,6 @@
 using AutoMapper;
+using SignLingo.API.Filter;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using SignLingo.API.Request;
@@ -26,6 +28,7 @@ namespace SignLingo.API.Controllers
         }
         
         // GET: api/User
+        [Filter.Authorize("admin")]
         [HttpGet]
         public async Task<IEnumerable<UserResponse>> GetAllAsync()
         {
@@ -45,6 +48,40 @@ namespace SignLingo.API.Controllers
             var userResponse = _mapper.Map<User, UserResponse>(user);
 
             return userResponse;
+        }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] UserInputLogin userInput)
+        {
+            try
+            {
+                var user = _mapper.Map<UserInputLogin, User>(userInput);
+                var jwt = await _userDomain.Login(user);
+                return Ok(jwt);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
+        }
+
+        [HttpPost]
+        [Route("signup")]
+        public async Task<IActionResult> Signup([FromBody] UserRequest userInput)
+        {
+            try
+            {
+                var user = _mapper.Map<UserRequest, User>(userInput);
+                var userCreated = await _userDomain.SignUp(user);
+                var userCreatedResponse = _mapper.Map<User, UserResponse>(userCreated);
+                return Created($"api/v1/destinations/signup", userCreatedResponse);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, e.Message);
+            }
         }
 
         // POST: api/User

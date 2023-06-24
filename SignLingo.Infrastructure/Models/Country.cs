@@ -1,8 +1,7 @@
 ﻿namespace SignLingo.Infrastructure.Models;
 
-public class Country
+public class Country : BaseModel
 {
-    public int Id { get; set; }
     public string Country_Name { get; set; }
     public List<City> Cities { get; set; }
 }
