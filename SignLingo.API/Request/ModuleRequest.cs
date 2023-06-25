@@ -8,4 +8,8 @@ public class ModuleRequest
     [MaxLength(100)]
     [MinLength(2)]
     public string Module_Name { get; set; }
+
+    [Required]
+    [DataType(DataType.ImageUrl)]
+    public string Image { get; set; }
 }
