@@ -26,6 +26,20 @@ public class UserModuleMySQLInfrastructure :  IUserModuleInfrastructure
 
         return usersModules;
     }
+    
+    public async Task<List<UserModule>> GetModulesByUserEmailAsync(string email)
+    {
+        
+        var userRequested = await _signLingoDbContext.User.Where(user => user.Email == email).FirstAsync();
+        var usersModules = await _signLingoDbContext.UserModule.Where(userModule => userModule.UserId == userRequested.Id).ToListAsync();
+
+        foreach (var userModule in usersModules)
+        {
+            userModule.Module = await _signLingoDbContext.Module.FindAsync(userModule.ModuleId);
+        }
+
+        return usersModules;
+    }
 
     public async Task<UserModule> GetByIdAsync(int userId, int moduleId)
     {

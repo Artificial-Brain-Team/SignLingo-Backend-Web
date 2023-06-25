@@ -42,6 +42,15 @@ namespace SignLingo.API.Controllers
             var userModuleResponse = _mapper.Map<UserModule, UserModuleResponse>(userModule);
             return userModuleResponse;
         }
+        
+        [Filter.Authorize("client,admin")]
+        [HttpGet("email")]
+        public async Task<IActionResult> GetModulesByUserEmailAsync([FromQuery(Name = "email")]string email)
+        {
+            var userModules = await _userModuleInfrastructure.GetModulesByUserEmailAsync(email);
+            var usersModulesResponse = _mapper.Map<List<UserModule>, List<UserModuleResponse>>(userModules);
+            return Ok(usersModulesResponse);
+        }
 
         // POST: api/UserModule
         [HttpPost]
