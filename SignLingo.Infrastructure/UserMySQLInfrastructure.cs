@@ -7,7 +7,7 @@ namespace SignLingo.Infrastructure;
 
 public class UserMySQLInfrastructure : IUserInfrastructure
 {
-    private SignLingoDbContext _signLingoDbContext;
+    private readonly SignLingoDbContext _signLingoDbContext;
 
     public UserMySQLInfrastructure(SignLingoDbContext signLingoDbContext)
     {
@@ -37,7 +37,9 @@ public class UserMySQLInfrastructure : IUserInfrastructure
 
     public async Task<User> GetByUserEmailAsync(string email)
     {
-        return await _signLingoDbContext.User.SingleAsync(user => user.Email == email);
+        var user = await _signLingoDbContext.User.SingleAsync(user => user.Email == email);
+        user.city = await _signLingoDbContext.City.FindAsync(user.CityId);
+        return user;
     }
 
     public async Task<User> GetByIdAsync(int id)

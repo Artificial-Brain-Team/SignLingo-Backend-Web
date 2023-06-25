@@ -27,6 +27,14 @@ namespace SignLingo.API.Controllers
             _userDomain = userDomain;
         }
         
+        [Filter.Authorize("client,admin")]
+        [HttpGet("email")]
+        public async Task<UserResponse> GetByUserEmailAsync([FromQuery(Name = "email")]string email)
+        {
+            var user = await _userInfrastructure.GetByUserEmailAsync(email);
+            return _mapper.Map<User, UserResponse>(user);
+        }
+        
         // GET: api/User
         [Filter.Authorize("admin")]
         [HttpGet]
