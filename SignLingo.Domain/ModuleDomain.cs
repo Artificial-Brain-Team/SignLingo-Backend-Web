@@ -35,7 +35,7 @@ public class ModuleDomain : IModuleDomain
     
     private bool IsValidData(Module module)
     {
-        return module.Module_Name.Length > 1; 
+        return module.Module_Name.Length > 1 && module.Unit > 0 && module.Image.Length > 1;
     }
     private bool IsValidId(int id)
     {
