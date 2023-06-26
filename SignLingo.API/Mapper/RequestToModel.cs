@@ -37,8 +37,8 @@ public class RequestToModel : Profile
             .ForMember(answer => answer.Answer_text, opt => opt.MapFrom(answerRequest => answerRequest.Answer_Text))
             .ForMember(answer => answer.IsCorrect, opt => opt.MapFrom(answerRequest => answerRequest.IsCorrect));
         CreateMap<UserModuleRequest, UserModule>()
-            .ForMember(userModule => userModule.ModuleId, opt => opt.MapFrom(userModuleRequest => userModuleRequest.ModuleId))
-            .ForMember(userModule => userModule.UserId, opt => opt.MapFrom(userModuleRequest => userModuleRequest.UserId))
+            .ForMember(userModule => userModule.ModuleId, opt => opt.MapFrom(userModuleRequest => userModuleRequest.Module.Id))
+            .ForMember(userModule => userModule.UserId, opt => opt.MapFrom(userModuleRequest => userModuleRequest.User.Id))
             .ForMember(userModule => userModule.Grade, opt => opt.MapFrom(userModuleRequest => userModuleRequest.Grade))
             .ForMember(userModule => userModule.User, opt => opt.Ignore())
             .ForMember(userModule => userModule.Module, opt => opt.Ignore());

@@ -1,8 +1,15 @@
-﻿namespace SignLingo.API.Request;
+﻿using System.Text.Json.Serialization;
+using SignLingo.Infrastructure.Models;
+
+namespace SignLingo.API.Request;
 
 public class UserModuleRequest
 {
-    public int UserId { get; set; }
-    public int ModuleId { get; set; }
+    public string? UserEmail { get; set; }
+    public string? ModuleName { get; set; }
+    [JsonIgnore]
+    public User? User { get; set; }
+    [JsonIgnore]
+    public Module? Module { get; set; }
     public int Grade { get; set; }
 }
