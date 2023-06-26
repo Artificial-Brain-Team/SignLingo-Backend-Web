@@ -31,6 +31,7 @@ public class ModelToResponse : Profile
             .ForMember(userModuleResponse => userModuleResponse.Email, opt => opt.MapFrom(userModule => userModule.User.Email))
             .ForMember(userModuleResponse => userModuleResponse.Module, opt => opt.MapFrom(userModule => userModule.Module.Module_Name))
             .ForMember(userModuleResponse => userModuleResponse.Image, opt => opt.MapFrom(userModule => userModule.Module.Image))
+            .ForMember(userModuleResponse => userModuleResponse.Unit, opt => opt.MapFrom(userModule => userModule.Module.Unit))
             .ForMember(userModuleResponse => userModuleResponse.Grade, opt => opt.MapFrom(userModule => userModule.Grade));
     }
 }
