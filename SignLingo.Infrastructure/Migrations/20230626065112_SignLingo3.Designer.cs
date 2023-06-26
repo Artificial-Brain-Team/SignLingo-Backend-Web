@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SignLingo.Infrastructure.Context;
 
@@ -10,9 +11,11 @@ using SignLingo.Infrastructure.Context;
 namespace SignLingo.Infrastructure.Migrations
 {
     [DbContext(typeof(SignLingoDbContext))]
-    partial class SignLingoDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230626065112_SignLingo3")]
+    partial class SignLingo3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
