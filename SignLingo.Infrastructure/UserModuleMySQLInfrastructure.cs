@@ -26,7 +26,12 @@ public class UserModuleMySQLInfrastructure :  IUserModuleInfrastructure
 
         return usersModules;
     }
-    
+
+    public async Task<Module> GetByModuleNameAsync(string moduleName)
+    {
+        return await _signLingoDbContext.Module.FirstAsync(module => module.Module_Name == moduleName);
+    }
+
     public async Task<List<UserModule>> GetModulesByUserEmailAsync(string email)
     {
         
@@ -47,6 +52,11 @@ public class UserModuleMySQLInfrastructure :  IUserModuleInfrastructure
         userModule.User = await _signLingoDbContext.User.FindAsync(userModule.UserId);
         userModule.Module = await _signLingoDbContext.Module.FindAsync(userModule.ModuleId);
         return userModule;
+    }
+
+    public async Task<User> GetByUserEmailAsync(string email)
+    {
+        return await _signLingoDbContext.User.FirstAsync(user => user.Email == email);
     }
 
     public async Task<bool> SaveAsync(UserModule userModule)

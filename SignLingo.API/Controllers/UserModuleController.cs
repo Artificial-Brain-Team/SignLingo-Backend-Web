@@ -58,6 +58,8 @@ namespace SignLingo.API.Controllers
         {
             if (ModelState.IsValid)
             {
+                request.User = await _userModuleInfrastructure.GetByUserEmailAsync(request.UserEmail);
+                request.Module = await _userModuleInfrastructure.GetByModuleNameAsync(request.ModuleName);
                 var userModule = _mapper.Map<UserModuleRequest, UserModule>(request);
                 await _userModuleDomain.SaveAsync(userModule);
             }
