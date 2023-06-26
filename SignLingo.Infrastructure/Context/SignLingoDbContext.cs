@@ -102,6 +102,7 @@ public class SignLingoDbContext : DbContext
         modelBuilder.Entity<User>().Property(user => user.BirthDate).HasColumnType("date");
         modelBuilder.Entity<User>().Property(user => user.DateCreated);
         modelBuilder.Entity<User>().Property(user => user.DateUpdated);
+        modelBuilder.Entity<User>().Property(user => user.Type).HasDefaultValue("Free");
         modelBuilder.Entity<User>().Property(user => user.IsActive).HasDefaultValue(true);
 
         modelBuilder.Entity<UserModule>().ToTable("user_module");
