@@ -37,6 +37,15 @@ namespace SignLingo.API.Controllers
 
             return exerciseResponses;
         }
+        
+        [Filter.Authorize("client,admin")]
+        [HttpGet("module-exercise")]
+        public async Task<IActionResult> GetExercisesByModuleNameAsync([FromQuery(Name = "module")]string moduleName)
+        {
+            var exercises = await _exerciseInfrastructure.GetExercisesByModuleNameAsync(moduleName);
+            var exercisesResponse = _mapper.Map<List<Exercise>, List<ExerciseResponse>>(exercises);
+            return Ok(exercisesResponse);
+        }
 
         // GET: api/Exercise/5
         [HttpGet("{id}", Name = "GetExercise")]

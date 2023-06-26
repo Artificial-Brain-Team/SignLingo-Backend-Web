@@ -37,8 +37,9 @@ namespace SignLingo.API.Controllers
         }
 
         // GET: api/Answer/Exercise/1
-        [HttpGet("{id}", Name = "GetAnswer")]
-        public async Task<IEnumerable<AnswerResponse>> Get(int id)
+        [Filter.Authorize("client,admin")]
+        [HttpGet("exercise-answer")]
+        public async Task<IEnumerable<AnswerResponse>> Get([FromQuery(Name = "exerciseId")]int id)
         {
             var answers = await _answerInfrastructure.GetByExerciseIdAsync(id);
 
