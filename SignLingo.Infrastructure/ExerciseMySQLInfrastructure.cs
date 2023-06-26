@@ -27,6 +27,18 @@ public class ExerciseMySQLInfrastructure : IExerciseInfrastructure
         return exercises;
     }
 
+    public async Task<List<Exercise>> GetExercisesByModuleNameAsync(string moduleName)
+    {
+        var moduleRequested = await _signLingoDbContext.Module.Where(module => module.Module_Name == moduleName).FirstAsync();
+        var exercises = await _signLingoDbContext.Exercise.Where(exercise => exercise.ModuleId == moduleRequested.Id).ToListAsync();
+        foreach (var exercise in exercises)
+        {
+            exercise.Module = moduleRequested;
+        }
+
+        return exercises;
+    }
+
     public async Task<Exercise> GetByIdAsync(int exerciseId)
     {
         var exercise = await _signLingoDbContext.Exercise.FindAsync(exerciseId);
