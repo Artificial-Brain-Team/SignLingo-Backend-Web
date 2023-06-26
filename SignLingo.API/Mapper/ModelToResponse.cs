@@ -9,7 +9,8 @@ public class ModelToResponse : Profile
     {
         CreateMap<User, UserResponse>()
             .ForMember(userResponse => userResponse.City, opt => opt.MapFrom(user => user.city.City_Name))
-            .ForMember(userResponse => userResponse.BirthDay, opt => opt.MapFrom(user => user.BirthDate.Date));
+            .ForMember(userResponse => userResponse.BirthDay, opt => opt.MapFrom(user => user.BirthDate.Date))
+            .ForMember(userResponse => userResponse.Type, opt => opt.MapFrom(user => user.Type));
         CreateMap<Country, CountryResponse>()
             .ForMember(userResponse => userResponse.id, opt => opt.MapFrom(country => country.Id))
             .ForMember(userResponse => userResponse.Country_name, opt => opt.MapFrom(country => country.Country_Name));
